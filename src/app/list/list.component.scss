@@ -1,0 +1,291 @@
+.container {
+  width: 100%;
+  height: calc(100% - 117px);
+  padding: 0 5px;
+  display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+  display: -moz-flex;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  aside, .content-shell {
+    height: 100%;
+    margin: 5px;
+    box-shadow: 0 0 10px #333;
+  }
+  aside {
+    flex: 1;
+    background: #fff;
+
+    hr {
+      margin: 0;
+    }
+    .filter-select {
+      width: calc(100% - 10px);
+      height: 37px;
+      display: block;
+      margin: 7px auto;
+      padding: 0 6px;
+    }
+
+    .filter-content {
+      width: calc(100% - 10px);
+      margin: 15px auto 0;
+
+      select, input {
+        width: calc(100% - 45px);
+        height: 30px;
+        padding: 0 5px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        font-size: 12px;
+        border: 1px solid #999;
+        border-radius: 4px;
+
+        &:focus {
+          border-color: #66afe9;
+          outline: 0;
+          -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+        }
+        &::placeholder {
+          line-height: 32px;
+          margin-top: 2px;
+        }
+      }
+
+      button {
+        color: #fff;
+        display: inline-block;
+        width: 40px;
+        height: 30px;
+        letter-spacing: 1px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        border-radius: 4px;
+      }
+      .btn-filter {
+        background-color: #5cb85c;
+        border: 1px solid #4cae4c;
+        margin-left: 5px;
+        margin-bottom: 2px;
+      }
+      .btn-clear {
+        width: 100%;
+        margin-top: 20px;
+        background-color: #d9534f;
+        border: 1px solid #d43f3a;
+      }
+      select + .btn-filter {
+        margin-bottom: 3px;
+      }
+      .content-date {
+        position: relative;
+
+        .btn-filter {
+          position: absolute;
+          top: 0;
+          height: calc(100% - 10px);
+        }
+      }
+    }
+  }
+  .content-shell {
+    flex: 6;
+    display: flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: -moz-flex;
+    flex-flow:row wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    background: #f5f5f5;
+
+    .top-bar {
+      width: calc(100% - 40px);
+      height: 40px;
+      margin: 10px auto 0;
+      border-bottom: 1px solid #aaa;
+
+      .info {
+        display: block;
+        float: left;
+      }
+      .page-bar {
+        display: block;
+        float: right;
+      }
+    }
+    .content {
+      width: 100%;
+      height: calc(100% - 63px);
+      padding: 0 0 10px 20px;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: left;
+      align-content: flex-start;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+}
+
+.page-bar {
+  display: block;
+  height: 40px;
+  font-family: HelveticaNeue,sans-serif;
+  font-size: 12px;
+
+  * {
+    display: inline-block;
+  }
+
+  .page-link {
+    text-align: center;
+
+    .page-prev, .page-next, .num {
+      height: 24px;
+      background-color: transparent;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      width: 24px;
+      padding: 0;
+      margin-right: 5px;
+      font-family: HelveticaNeue,sans-serif;
+      cursor: pointer;
+      color: #555;
+      line-height: 24px
+    }
+
+    .num.active {
+      background-color: #fff;
+      border: 1px solid #dcdcdc;
+      border-radius: 4px;
+    }
+    .num:empty {
+      cursor: default;
+
+      &::before {
+        content: '...';
+      }
+    }
+
+  }
+  .page-turn {
+    input {
+      height: 24px;
+      width: 27px;
+      border-radius: 4px;
+      outline: 0;
+      border: 1px solid #d7d7d7;
+      padding: 0 0 0 5px;
+      margin: 0 10px;
+      display: inline-block;
+    }
+    .btn-turn {
+      background-color: #007be8;
+      margin-left: 10px;
+      display: inline-block;
+      width: 36px;
+      margin-bottom: 0;
+      font-weight: 400;
+      padding: 0;
+      line-height: 1.42857143;
+      white-space: nowrap;
+      vertical-align: middle;
+      -ms-touch-action: manipulation;
+      touch-action: manipulation;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      outline: 0;
+      cursor: pointer;
+      color: #fff;
+    }
+  }
+}
+
+.table-list {
+  width: calc(100% - 20px);
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  tr {
+    height: 60px;
+
+    &:hover {
+      background: #e6f2fc !important;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      text-align: center;
+
+      .check-display {
+        display: none;
+      }
+      .long {
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+        padding: 5px 15px;
+        box-sizing: border-box;
+        letter-spacing: 1px;
+        font-size: 16px;
+        cursor: pointer;
+        display: block;
+
+        pre {
+          text-align: left;
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+      .check-display:checked + .long {
+        display: block;
+        line-height: 1.41;
+        font-size: 14px;
+        overflow: auto;
+        white-space: normal;
+        height: unset;
+
+        pre {
+          white-space: pre-line;
+        }
+      }
+    }
+
+    th {
+      padding: 5px 0;
+      background: #e5eaef;
+    }
+  }
+  .list-item {
+    $list-bg: #f0f0f0, transplarent;
+
+    &:nth-child(2n + 1) {
+      background: nth($list-bg, 1);
+    }
+    &:nth-child(2n + 2) {
+      background: nth($list-bg, 2);
+    }
+  }
+}

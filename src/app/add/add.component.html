@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="content-shell">
+    <form class="container" (ngSubmit)="submitInfo()">
+      <div class="form-group">
+        <label [ngClass]="{pass:submit.kind.length > 0}">种类</label>
+        <select class="form-input select" [(ngModel)]="submit.kind" name="kind" required>
+          <option selected disabled value="">请选择种类，必选</option>
+          <option *ngFor="let kind of kinds" value="{{kind.id}}">{{kind.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label [ngClass]="{pass:submit.name.length > 0}">项目名称</label>
+        <input list="list-names" class="form-input" placeholder="必填" [(ngModel)]="submit.name" name="name" required autocomplete="off"/>
+        <datalist id="list-names">
+          <option *ngFor="let name of names">{{name}}</option>
+        </datalist>      </div>
+      <div class="form-group">
+        <label [ngClass]="{pass:submit.person.length > 0}">记录人员</label>
+        <input class="form-input" list="list-persons" placeholder="必填" [(ngModel)]="submit.person" name="person" autocomplete="off"/>
+        <datalist id="list-persons">
+          <option *ngFor="let person of persons">{{person}}</option>
+        </datalist>
+      </div>
+      <div class="form-group">
+        <label [ngClass]="{pass:submit.date.length > 0}">发现日期</label>
+        <input class="form-input" type="date" min="2018-01-01" max="{{maxDate}}" [(ngModel)]="submit.date" name="date" autocomplete="off"/>
+      </div>
+      <div class="form-group">
+        <label [ngClass]="{pass:submit.description.length > 0}">背景描述</label>
+        <textarea class="form-input textarea" rows="3" placeholder="添加描述，必填" [(ngModel)]="submit.description" name="description"></textarea>
+      </div>
+      <div class="form-group">
+        <label [ngClass]="{pass:submit.solution.length > 0}">解决办法</label>
+        <textarea class="form-input textarea" rows="3" placeholder="添加办法，必填" [(ngModel)]="submit.solution" name="solution"></textarea>
+      </div>
+      <button class="btn-submit" [disabled]="submit.kind.length == 0 || submit.name.length == 0 || submit.person.length == 0 || submit.date.length == 0 || submit.description.length == 0 || submit.solution.length == 0">提交</button>
+    </form>
+  </div>
+</div>

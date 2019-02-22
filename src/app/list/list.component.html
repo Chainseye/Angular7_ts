@@ -1,0 +1,93 @@
+<div class="container">
+  <aside>
+    <select class="filter-select" name="selectType" [(ngModel)]="selectType">
+      <option disabled selected value="">请选择筛选条件</option>
+      <option *ngFor="let type of types" name="" [value]="type">{{type}}</option>
+    </select>
+    <hr/>
+    <div class="filter-container">
+      <div class="filter-content" [ngSwitch]="selectType">
+        <div *ngSwitchCase="'种类'" class="content-kind">
+          <select class="select-kind" [(ngModel)]="selectKind">
+            <option selected disabled value="">请选择种类</option>
+            <option *ngFor="let kind of kinds" value="{{kind.id}}">{{kind.name}}</option>
+          </select>
+          <button class="btn-filter" *ngIf="selectKind !== ''">筛选</button>
+        </div>
+        <div *ngSwitchCase="'项目名称'" class="content-name">
+          <input list="list-names" placeholder="请输入项目名称" [(ngModel)]="selectName" autocomplete="off"/>
+          <datalist id="list-names">
+            <option *ngFor="let name of names">{{name}}</option>
+          </datalist>
+          <button class="btn-filter" *ngIf="selectName !== ''">筛选</button>
+        </div>
+        <div *ngSwitchCase="'记录人员'" class="content-person">
+          <input list="list-persons" placeholder="请输入记录人员姓名" [(ngModel)]="selectPerson" autocomplete="off"/>
+          <datalist id="list-persons">
+            <option *ngFor="let person of persons">{{person}}</option>
+          </datalist>
+          <button class="btn-filter" *ngIf="selectPerson !== ''">筛选</button>
+        </div>
+        <div *ngSwitchCase="'日期'" class="content-date">
+          <input type="date" min="2018-01-01" max="{{maxDate}}" [(ngModel)]="startDate" autocomplete="off"/>
+          <input type="date" min="{{ startDate || '2018-03-01'}}" max="{{maxDate}}" [(ngModel)]="endDate" autocomplete="off"/>
+          <button class="btn-filter" *ngIf="startDate !== '' && endDate !== ''">筛选</button>
+        </div>
+        <div *ngIf="selectType != ''">
+          <button class="btn-clear" (click)="clearFilter()">清空</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="content-shell">
+    <div class="top-bar">
+      <span class="info">每页 <i>{{pageSize}}</i> 条，共 <i>{{count}}</i> 条数据</span>
+      <div class="page-bar" *ngIf="pages.length > 0">
+        <div class="page-link">
+          <button class="page-prev"><span class="fa fa-angle-left"></span></button>
+          <div class="page-num">
+            <span class="num" *ngFor="let page of pages" [ngClass]="{active: +page == pageIndex}">{{page}}</span>
+          </div>
+          <button class="page-next"><span class="fa fa-angle-right"></span></button>
+        </div>
+        <div class="page-turn">
+          <span class="count">共 <i>{{ (count / pageSize) | math:'ceil'}}</i> 页</span>
+          <p class="input"> 到第<input type="number" value="{{pageIndex}}" min="1" max="{{ (count / pageSize) | math:'ceil'}}"/>页 </p>
+          <button class="btn-turn">确认</button>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <table class="table-list">
+        <thead>
+          <tr>
+            <th style="width: 50px;">序号</th>
+            <th style="width: 75px;">种类</th>
+            <th style="width: 220px;">项目名称</th>
+            <th style="width: 90px;">记录人员</th>
+            <th style="width: 110px;">发现日期</th>
+            <th class="long">背景描述</th>
+            <th class="long">解决办法</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let info of list" class="list-item">
+            <td>{{info.id}}</td>
+            <td>{{info.kind}}</td>
+            <td>{{info.name}}</td>
+            <td>{{info.person}}</td>
+            <td>{{info.date}}</td>
+            <td title="单击切换显示模式">
+              <input class="check-display" id="chk-dpn-{{info.id}}" type="checkbox"/>
+              <label class="long" for="chk-dpn-{{info.id}}"><pre>{{info.description}}</pre></label>
+            </td>
+            <td title="单击切换显示模式">
+              <input class="check-display" id="chk-sln-{{info.id}}" type="checkbox"/>
+              <label class="long" for="chk-sln-{{info.id}}"><pre>{{info.solution}}</pre></label>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

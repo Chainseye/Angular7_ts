@@ -1,0 +1,25 @@
+<header>
+  <div class="header-logo left"></div>
+  <!--<div class="header-menu right">-->
+    <!--<div class="menu-item">-->
+      <!--<span class="fa fa-user-circle-o"></span>-->
+    <!--</div>-->
+    <!--<div class="menu-item">-->
+      <!--<span class="fa fa-ellipsis-v"></span>-->
+      <!--<div class="menu-drop">-->
+        <!--<ul>-->
+          <!--<li class="drop-item">登出</li>-->
+        <!--</ul>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+</header>
+<nav>
+  <ul>
+    <li routerLink="/page/list" routerLinkActive="active"><span class="fa fa-list"></span>列表</li>
+    <li routerLink="/page/add" routerLinkActive="active"><span class="fa fa-plus-square-o"></span>添加</li>
+  </ul>
+</nav>
+<div class="main" [@routeAnimations]="prepareRoute(outletData)">
+  <router-outlet #outletData="outlet"></router-outlet>
+</div>
